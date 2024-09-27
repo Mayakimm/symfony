@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Tuto;
+use App\Entity\User;
 
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -46,7 +47,8 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToDashboard('Tuto', 'fas fa-list', Tuto::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class); //pour visualiser et editer users
+        yield MenuItem::linkToCrud('Tuto', 'fas fa-list', Tuto::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
