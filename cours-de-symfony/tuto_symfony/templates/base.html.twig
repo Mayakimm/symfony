@@ -140,7 +140,10 @@
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
               <h4>A propos</h4>
-              <p class="text-body-secondary">Formation Facile est le leader de la formation jeux video</p>
+              {% if app.user and app.user.email %}
+                <p class="text-body-secondary">Bonjour {{ app.user.email }} !</p>
+              {% endif %}
+                <p class="text-body-secondary">Formation Facile est le leader de la formation jeux video</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
               <h4>Contact</h4>
