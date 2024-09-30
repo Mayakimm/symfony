@@ -11,6 +11,21 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class TutoController extends AbstractController
 {
+
+    #[Route('/tuto/{slug}', name: 'app_tuto_details')]
+    public function view(EntityManagerInterface $entityManager, TutoRepository $productRepository, string $slug): Response
+    {
+        $tuto = $entityManager->getRepository(Tuto::class)->findOneBySlug($slug);
+
+        if (!$tuto) {
+          return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('tuto/details.html.twig', [
+            'tuto' => $tuto
+        ]);
+    }
+
     #[Route('/tuto/{id}', name: 'app_tuto')]
     public function index(TutoRepository $productRepository, int $id): Response
     {
